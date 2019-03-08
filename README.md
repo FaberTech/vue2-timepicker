@@ -4,7 +4,7 @@ A dropdown time picker (hour|minute|second) for **Vue 2.x**, with flexible time 
 
 > Faber version adds the label options. See below for details
 
-##Label Options
+## Label Options
 
 Two new options:  
 
