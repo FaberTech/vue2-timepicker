@@ -1,8 +1,19 @@
-# Vue2 Time Picker
+# Vue2 Time Picker (Faber Version)
 
 A dropdown time picker (hour|minute|second) for **Vue 2.x**, with flexible time format support.
 
-> Looking for the Vue 1.x version? Please check the [vue-timepicker](https://github.com/phoenixwong/vue-timepicker) *(Vue 1.x supported)*
+> Faber version adds the label options. See below for details
+
+##Label Options
+
+Two new options:  
+
+1. 'showLabel' (Boolean) - show label on not actioned time picker (before first click), also on no values
+2. 'labelText' (String) - Custom string for the label
+
+```html
+<vue-timepicker showLabel labelText="Custom Label"></vue-timepicker>
+```
 
 ## Demo
 
