@@ -194,7 +194,7 @@ export default {
     },
 
     readValues () {
-      this.stateValue = !(!this.value)
+      this.stateValue = (this.value && (this.value.hh || this.value.HH || this.value.mm || this.value.ss))
       if (!this.value || this.muteWatch) { return }
 
       const timeValue = JSON.parse(JSON.stringify(this.value || {}))
@@ -367,7 +367,6 @@ export default {
       }
 
       this.stateValue = !(!this.hour && !this.minute && !this.second)
-      console.log('this.stateValue', this.stateValue)
     },
 
     clearTime () {
@@ -375,8 +374,6 @@ export default {
       this.minute = ''
       this.second = ''
       this.apm = ''
-
-      this.stateValue = false
     }
   },
 
