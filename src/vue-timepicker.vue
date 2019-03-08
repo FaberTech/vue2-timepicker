@@ -194,7 +194,7 @@ export default {
     },
 
     readValues () {
-      this.stateValue = (!this.value || this.muteWatch)
+      this.stateValue = !(!this.value)
       if (!this.value || this.muteWatch) { return }
 
       const timeValue = JSON.parse(JSON.stringify(this.value || {}))
@@ -353,7 +353,6 @@ export default {
     toggleDropdown () {
       this.showDropdown = !this.showDropdown
       this.stateAction = true
-      console.log('this.stateAction', this.stateAction)
     },
 
     select (type, value) {
