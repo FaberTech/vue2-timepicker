@@ -15,7 +15,9 @@ export default {
     format: {type: String},
     minuteInterval: {type: Number},
     secondInterval: {type: Number},
-    id: {type: String}
+    id: {type: String},
+    showLabel: {type: Boolean},
+    labelText: {type: String}
   },
 
   data () {
@@ -34,7 +36,11 @@ export default {
       minute: '',
       second: '',
       apm: '',
-      fullValues: undefined
+      fullValues: undefined,
+      stateAction: false,
+      stateValue: false,
+      labelDefault: 'Select custom time',
+      labelTxt: ''
     }
   },
 
@@ -133,6 +139,8 @@ export default {
       this.$nextTick(() => {
         self.readValues()
       })
+
+      this.labelTxt = this.labelText ? this.labelText : this.labelDefault
     },
 
     renderHoursList () {
@@ -186,6 +194,7 @@ export default {
     },
 
     readValues () {
+      this.stateValue = (!this.value || this.muteWatch)
       if (!this.value || this.muteWatch) { return }
 
       const timeValue = JSON.parse(JSON.stringify(this.value || {}))
@@ -343,6 +352,8 @@ export default {
 
     toggleDropdown () {
       this.showDropdown = !this.showDropdown
+      this.stateAction = true
+      console.log('this.stateAction', this.stateAction)
     },
 
     select (type, value) {
@@ -355,6 +366,9 @@ export default {
       } else if (type === 'apm') {
         this.apm = value
       }
+
+      this.stateValue = !(!this.hour && !this.minute && !this.second)
+      console.log('this.stateValue', this.stateValue)
     },
 
     clearTime () {
@@ -362,6 +376,8 @@ export default {
       this.minute = ''
       this.second = ''
       this.apm = ''
+
+      this.stateValue = false
     }
   },
 
@@ -373,7 +389,8 @@ export default {
 
 <template>
 <span class="time-picker">
-  <input class="display-time" :id="id" v-model="displayTime" @click.stop="toggleDropdown" type="text" readonly />
+  <span class="time-picker-label" v-bind:class="{'actioned': stateAction, 'noValue': !stateValue}" v-if="showLabel">{{labelTxt}}</span>
+  <input class="display-time" :id="id" v-model="displayTime" @click.stop="toggleDropdown" @click="$emit('click')" type="text" readonly />
   <span class="clear-btn" v-if="!hideClearButton" v-show="!showDropdown && showClearBtn" @click.stop="clearTime">&times;</span>
   <div class="time-picker-overlay" v-if="showDropdown" @click.stop="toggleDropdown"></div>
   <div class="dropdown" v-show="showDropdown">

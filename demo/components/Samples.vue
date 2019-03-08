@@ -86,7 +86,7 @@ export default {
         <pre data-title="HTML"><code class="html">&lt;vue-timepicker&gt;&lt;/vue-timepicker&gt;</code></pre>
       </div>
       <div class="preview">
-        <vue-timepicker></vue-timepicker>
+        <vue-timepicker showLabel labelText="Select Custom Start Time"></vue-timepicker>
       </div>
     </div>
 

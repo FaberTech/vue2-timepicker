@@ -118,3 +118,25 @@
   cursor: default;
   font-size: 0.8em;
 }
+
+.time-picker-label {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #d2d2d2;
+  color: #161616;
+  font-size: 14px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.time-picker-label.actioned {
+  display: none;
+}
+.time-picker-label.noValue {
+  display: flex;
+}
